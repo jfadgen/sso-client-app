@@ -18,10 +18,15 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module CognitoClientApp
+module SsoClientApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    if File.exist?('.env')
+      require 'dotenv'
+      Dotenv.load('.env.local')
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

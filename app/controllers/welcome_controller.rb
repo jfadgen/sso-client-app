@@ -25,7 +25,7 @@ class WelcomeController < ApplicationController
   private
 
   def accounts_url(params = {})
-    uri = URI("http://127.0.0.1:3000/")
+    uri = URI(ENV["SSO_PROVIDER_URL"])
     uri.query = params.to_query
     uri.to_s
   end

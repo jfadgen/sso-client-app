@@ -1,3 +1,6 @@
-<h1>Welcome to the Client App!</h1>
-<p>You have a live session and your access key is:</p>
-<p>_<%= session[:access_key] %>_</p>
+<div class="content">
+  <h1>Welcome to the Client App!</h1>
+  <p>You have a live session and your access key is:</p>
+  <p><%= session[:access_key] %></p>
+  <p><%= button_to "Sign Out", sign_out_url, method: :get, class: "pure-button pure-button-primary" %></p>
+</div>

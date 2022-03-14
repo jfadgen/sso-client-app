@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
       Rails.logger.info "~~ authenticate: #{session[:access_key]}"
     else
       Rails.logger.info "~~ authenticate: route to login."
-      redirect_to accounts_url, { redirect_url: request.original_url }, allow_other_host: true
+      redirect_to accounts_url, allow_other_host: true
     end
   end
 
@@ -26,7 +26,7 @@ class WelcomeController < ApplicationController
 
   def accounts_url(params = {})
     uri = URI(ENV["SSO_PROVIDER_URL"])
-    uri.query = params.to_query
+    uri.query = params.merge(redirect_url: request.original_url).to_query
     uri.to_s
   end
 end

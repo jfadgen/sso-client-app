@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
       Rails.logger.info "~~ authenticate: #{session[:access_key]}"
     else
       Rails.logger.info "~~ authenticate: route to login."
-      redirect_to accounts_url redirect_url: request.original_url
+      redirect_to accounts_url redirect_url: request.original_url, allow_other_host: true
     end
   end
 

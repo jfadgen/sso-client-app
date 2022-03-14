@@ -5,6 +5,14 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def sign_out
+    session[:access_key] = nil
+    sign_out_url = URI("#{ENV["SSO_PROVIDER_URL"]}accounts/sign_out").to_s
+    redirect_to accounts_url, allow_other_host: true
+  end
+
+  private
+
   def verify_access_key
     if params[:access_key]
       # TODO Verfication step.
@@ -21,8 +29,6 @@ class WelcomeController < ApplicationController
       redirect_to accounts_url, allow_other_host: true
     end
   end
-
-  private
 
   def accounts_url(params = {})
     uri = URI(ENV["SSO_PROVIDER_URL"])
